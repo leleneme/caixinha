@@ -1,0 +1,229 @@
+<!--
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡔⣻⠁⠀⢀⣀⣀⡀
+⠀⠀⠀⠀⢀⣾⠳⢶⣦⠤⣀⠀⠀⠀⠀⠀⠀⠀⣾⢀⡇⡴⠋⣀⠴⣊⣩⣤⠶⠞⢹⣄
+⠀⠀⠀⠀⢸⠀⠀⢠⠈⠙⠢⣙⠲⢤⠤⠤⠀⠒⠳⡄⣿⢀⠾⠓⢋⠅⠛⠉⠉⠝⠀⠼
+⠀⠀⠀⠀⢸⠀⢰⡀⠁⠀⠀⠈⠑⠦⡀⠀⠀⠀⠀⠈⠺⢿⣂⠀⠉⠐⠲⡤⣄⢉⠝⢸
+⠀⠀⠀⠀⢸⠀⢀⡹⠆⠀⠀⠀⠀⡠⠃⠀⠀⠀⠀⠀⠀⠀⠉⠙⠲⣄⠀⠀⠙⣷⡄⢸
+⠀⠀⠀⠀⢸⡀⠙⠂⢠⠀⠀⡠⠊⠀⠀⠀⠀⢠⠀⠀⠀⠀⠘⠄⠀⠀⠑⢦⣔⠀⢡⡸
+⠀⠀⠀⠀⢀⣧⠀⢀⡧⣴⠯⡀⠀⠀⠀⠀⠀⡎⠀⠀⠀⠀⠀⢸⡠⠔⠈⠁⠙⡗⡤⣷⡀
+⠀⠀⠀⠀⡜⠈⠚⠁⣬⠓⠒⢼⠅⠀⠀⠀⣠⡇⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⡀⢹⠀⠸⡄
+⠀⠀⠀⡸⠀⠀⠀⠘⢸⢀⠐⢃⠀⠀⠀⡰⠋⡇⠀⠀⠀⢠⠀⠀⡿⣆⠀⠀⣧⡈⡇⠆⢻
+⠀⠀⢰⠃⠀⠀⢀⡇⠼⠉⠀⢸⡤⠤⣶⡖⠒⠺⢄⡀⢀⠎⡆⣸⣥⠬⠧⢴⣿⠉⠁⠸⡀⣇⠀
+⠀⠀⠇⠀⠀⠀⢸⠀⠀⠀⣰⠋⠀⢸⣿⣿⠀⠀⠀⠙⢧⡴⢹⣿⣿⠀⠀⠀⠈⣆⠀⠀⢧⢹⡄
+⠀⣸⠀⢠⠀⠀⢸⡀⠀⠀⢻⡀⠀⢸⣿⣿⠀⠀⠀⠀⡼⣇⢸⣿⣿⠀⠀⠀⢀⠏⠀⠀⢸⠀⠇
+⠀⠓⠈⢃⠀⠀⠀⡇⠀⠀⠀⣗⠦⣀⣿⡇⠀⣀⠤⠊⠀⠈⠺⢿⣃⣀⠤⠔⢸⠀⠀⠀⣼⠑⢼
+⠀⠀⠀⢸⡀⣀⣾⣷⡀⠀⢸⣯⣦⡀⠀⠀⠀⢇⣀⣀⠐⠦⣀⠘⠀⠀⢀⣰⣿⣄⠀⠀⡟
+⠀⠀⠀⠀⠛⠁⣿⣿⣧⠀⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⣿⣿⡿⠈⠢⣼⡇
+⠀⠀⠀⠀⠀⠀⠈⠁⠈⠻⠈⢻⡿⠉⣿⠿⠛⡇⠒⠒⢲⠺⢿⣿⣿⠉⠻⡿⠁⠀⠀⠈⠁
+⢀⠤⠒⠦⡀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠉⠆⠀⠀⠉⠉⠉⠀⠀⡝⣍
+⡎⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⡰⠋⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⢡⠈⢦
+⡇⠀⠀⠸⠁⠀⠀⠀⠀⢀⠜⠁⠀⠀⠀⡸⠀⠀⠀⠀⠀⠀⠀⠘⡄⠈⢳⡀
+⡇⠀⠀⢠⠀⠀⠀⠀⠠⣯⣀⠀⠀⠀⡰⡇⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⢀⡦⠤⢄⡀
+⢱⡀⠀⠈⠳⢤⣠⠖⠋⠛⠛⢷⣄⢠⣷⠁⠀⠀⠀⠀⠀⠀⠀⠀⠘⡾⢳⠃⠀⠀⠘⢇
+⠀⠙⢦⡀⠀⢠⠁⠀⠀⠀⠀⠀⠙⣿⣏⣀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣧⡃⠀⠀⠀⠀⣸
+⠀⠀⠀⠈⠉⢺⣄⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣗⣤⣀⣠⡾⠃
+⠀⠀⠀⠀⠀⠀⠣⢅⡤⣀⣀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠉⠉⠉
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠁⠀⠉⣿⣿⣿⣿⣿⡿⠻⣿⣿⣿⣿⠛⠉
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⠀⠀⠀⠀⣿⣿⣿⡿
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣟⠀⠀⢠⣿⣿⣿⣿⣧
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⠀⠀⢸⣿⣿⣿⣿⣿
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⡏⠀⠀⢸⣿⣿⣿⣿⣿⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⠀⠀⠀⢺⣿⣿⣿⣿⣿⣿⣷
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠈⠉⠻⣿⣿⣿⠟
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⠏
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Caixinha</title>
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			background-image: radial-gradient(black 1px, transparent 0);
+			background-size: 40px 40px;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+		}
+
+		main {
+			margin: auto;
+			width: 70%;
+			max-width: 480px;
+			text-align: center;
+			background-color: white;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			max-width: 250px;
+			margin: auto;
+		}
+
+		input {
+			display: none;
+		}
+
+		label {
+			margin-bottom: 1rem;
+			cursor: pointer;
+			padding: 5px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			border: lightblue dotted 3px;
+			background-color: rgb(210, 234, 242);
+		}
+
+		label:hover {
+			background-color: rgb(203, 237, 249);
+		}
+
+		#error {
+			color: lightcoral;
+			font-weight: bold;
+		}
+
+		#submit-btn {
+			padding: 5px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			outline: none;
+			border: none;
+			border-radius: 2px;
+			transition: 0.3s background;
+			cursor: pointer;
+			background-color: #dddddd;
+		}
+
+		#submit-btn:disabled {
+			cursor: no-drop;
+		}
+
+		#submit-btn:hover:enabled {
+			background-color: rgb(203, 237, 249);
+
+		}
+
+		ul {
+			padding: 0;
+			list-style-type: none;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		a {
+			color: hotpink;
+			transition: 0.2s color;
+			word-break: break-word;
+		}
+
+		a:hover {
+			color: pink;
+		}
+
+		#response {
+			max-width: 600px;
+			margin: auto;
+			margin-top: 15px;
+		}
+
+		#filename {
+			max-width: 50%;
+			text-overflow: ellipsis;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<h2>Caixinha :)</h2>
+		<p>Upload files that last <b>{{ .Days }}</b> days with a <b>{{ .MaxSize }} MB</b> size limit</p>
+		<form>
+			<label id="input-label" for="file-input">No files selected</label>
+			<input type="file" id="file-input" name="file" hidden>
+			<button id="submit-btn" disabled>
+				Upload
+			</button>
+		</form>
+		<p id="error" class="hidden">Failed to upload file to the server. Try again later.</p>
+		<div id="response">
+			<span id="filename"></span> <br/>
+			<a id="result-url" href="" target="_blank"></a>
+		</div>
+	</main>
+	<script>
+		// TODO: make this better
+		document.addEventListener('DOMContentLoaded', function () {
+			const btn = document.getElementById('submit-btn')
+			const list = document.getElementById('file-list')
+			const input = document.getElementById('file-input')
+			const label = document.getElementById('input-label')
+			const noFilesText = label.textContent
+
+			const checkFiles = () => {
+				if (input.files.length > 0) {
+					btn.disabled = false
+					label.textContent = input.files[0].name
+				} else {
+					label.textContent = noFilesText
+					btn.disabled = true
+				}
+			}
+
+			input.value = ''
+			input.onchange = checkFiles
+			checkFiles()
+
+			btn.onclick = (e) => {
+				e.preventDefault()
+				if (input.files.length == 0) return
+				
+				const formData = new FormData()
+				const file = input.files[0]
+				formData.append('file', file)
+				
+				btn.disabled = true
+				fetch('/upload', {
+					method: 'post',
+					body: formData
+				}).then((response) => {
+					if (response.status != 200) throw new Error()
+					else return response.text()
+				}).then((body) => {
+					document.getElementById('filename').textContent = file.name
+					const url = document.getElementById('result-url')
+					url.textContent = body
+					url.href = body
+					input.value = ''
+					checkFiles()
+				}).catch((error) => {
+					const errorMessage = document.getElementById('error')
+					errorMessage.classList.remove('hidden')
+					input.value = ''
+					checkFiles()
+					setTimeout(() => {
+						errorMessage.classList.add('hidden')
+					}, 10000)
+				})
+			}
+		});
+	</script>
+</body>
+
+</html>
