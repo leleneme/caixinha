@@ -17,7 +17,7 @@ func (c *AppContext) uploadFile(w http.ResponseWriter, r *http.Request) {
 
 	// ParseMultipartForm only limits how much of the server's memory is used for parsing.
 	// Anything exceeding maxBytesSize is saved to disk, so we need truncate the request
-	// body first to maxBytesSize and a plus of 50 bytes (just to be safe) ;)
+	// body first to maxBytesSize and a plus of 500 bytes (just to be safe) ;)
 	r.Body = http.MaxBytesReader(w, r.Body, maxBytesSize+500)
 	r.ParseMultipartForm(maxBytesSize)
 
