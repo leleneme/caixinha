@@ -19,7 +19,12 @@ func (c *AppContext) uploadFile(w http.ResponseWriter, r *http.Request) {
 	// Anything exceeding maxBytesSize is saved to disk, so we need truncate the request
 	// body first to maxBytesSize and a plus of 500 bytes (just to be safe) ;)
 	r.Body = http.MaxBytesReader(w, r.Body, maxBytesSize+500)
-	r.ParseMultipartForm(maxBytesSize)
+	err := r.ParseMultipartForm(maxBytesSize)
+	if err != nil {
+		w.WriteHeader(http.StatusRequestEntityTooLarge)
+		w.Write([]byte(fmt.Sprintf("maximum file size of %d bytes exceeded", maxBytesSize)))
+		return
+	}
 
 	uploadedFile, handler, err := r.FormFile("file")
 	if err != nil {
@@ -29,12 +34,6 @@ func (c *AppContext) uploadFile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer uploadedFile.Close()
-
-	if handler.Size > maxBytesSize {
-		w.WriteHeader(http.StatusRequestEntityTooLarge)
-		w.Write([]byte(fmt.Sprintf("maximum file size of %d bytes exceeded", maxBytesSize)))
-		return
-	}
 
 	filename, size := handler.Filename, handler.Size
 	contentType := atIndexOr(0, "application/octet-stream", handler.Header["Content-Type"])
