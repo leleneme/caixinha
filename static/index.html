@@ -173,7 +173,7 @@
 				Upload
 			</button>
 		</form>
-		<p id="error" class="hidden">Failed to upload file to the server. Try again later.</p>
+		<p id="error" class="hidden"></p>
 		<div id="response">
 			<span id="filename"></span> <br/>
 			<a id="result-url" href="" target="_blank"></a>
@@ -215,8 +215,8 @@
 					method: 'post',
 					body: formData
 				}).then((response) => {
-					if (response.status != 200) throw new Error()
-					else return response.text()
+					if (response.status != 200) throw new Error(response.status)
+					return response.text()
 				}).then((body) => {
 					document.getElementById('filename').textContent = file.name
 					const url = document.getElementById('result-url')
@@ -226,6 +226,14 @@
 					checkFiles()
 				}).catch((error) => {
 					const errorMessage = document.getElementById('error')
+					const errorStatus = parseInt(error.message)
+
+					errorMessage.innerText = 'Failed to upload file to the server. Try again later.'
+					if (errorStatus != NaN && errorStatus == 413) {
+						// HTTP 413 = Request Entity Too Large
+						errorMessage.innerText = 'File size exceeds server\'s limit'
+					}
+
 					errorMessage.classList.remove('hidden')
 					input.value = ''
 					checkFiles()
