@@ -153,7 +153,19 @@
 <body>
 	<main>
 		<h2>Caixinha :)</h2>
-		<p>Upload files that last <b>{{ .Days }}</b> days with a <b>{{ .MaxSize }} MB</b> size limit</p>
+		<p>Upload files that last
+			{{if le .Days 0}}
+				<b>forever</b>
+			{{else}}
+				<b>{{ .Days }}</b> days
+			{{end}}
+			with
+			{{if le .MaxSize 0}}
+				no size limit
+			{{else}}
+				a <b>{{ .MaxSize }} MB</b> size limit
+			{{end}}
+		</p>
 		<form>
 			<label id="input-label" for="file-input">No files selected</label>
 			<input type="file" id="file-input" name="file" hidden>
