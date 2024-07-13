@@ -61,7 +61,7 @@ func (c *AppContext) getFilesToRemove() ([]FileRecord, error) {
 	var records []FileRecord
 
 	timeNow := time.Now().UTC().Unix()
-	rows, err := c.Db.Query("select * from file_record where upload_timestamp + seconds_to_live <= ?;", timeNow)
+	rows, err := c.Db.Query("select * from file_record where upload_timestamp + seconds_to_live <= ? and seconds_to_live > 0;", timeNow)
 	if err != nil {
 		return nil, err
 	}
