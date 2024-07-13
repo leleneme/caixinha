@@ -13,15 +13,28 @@ import (
 
 func (c *AppContext) uploadFile(w http.ResponseWriter, r *http.Request) {
 	// 1 megabyte = 1 million bytes, i guess
-	r.ParseMultipartForm(*c.MaxFileSize * 1_000_000)
+	maxBytesSize := *c.MaxFileSize * 1_000_000
+
+	// ParseMultipartForm only limits how much of the server's memory is used for parsing.
+	// Anything exceeding maxBytesSize is saved to disk, so we need truncate the request
+	// body first to maxBytesSize and a plus of 50 bytes (just to be safe) ;)
+	r.Body = http.MaxBytesReader(w, r.Body, maxBytesSize+500)
+	r.ParseMultipartForm(maxBytesSize)
 
 	uploadedFile, handler, err := r.FormFile("file")
 	if err != nil {
 		log.Printf("Error retriving 'file': %s\n", err)
 		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Failed to retrive file from request (is it missing?)"))
 		return
 	}
 	defer uploadedFile.Close()
+
+	if handler.Size > maxBytesSize {
+		w.WriteHeader(http.StatusRequestEntityTooLarge)
+		w.Write([]byte(fmt.Sprintf("maximum file size of %d bytes exceeded", maxBytesSize)))
+		return
+	}
 
 	filename, size := handler.Filename, handler.Size
 	contentType := atIndexOr(0, "application/octet-stream", handler.Header["Content-Type"])
