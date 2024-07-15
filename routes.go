@@ -81,7 +81,7 @@ func (c *AppContext) getFile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := parseBase62(vars["id"])
 	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -93,7 +93,7 @@ func (c *AppContext) getFile(w http.ResponseWriter, r *http.Request) {
 
 	if record.UploadTimestamp+record.SecondsToLive <= time.Now().UTC().Unix() {
 		log.Printf("File %s expired on request, wow!\n", id)
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusGone)
 		return
 	}
 
