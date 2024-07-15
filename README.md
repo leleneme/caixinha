@@ -2,6 +2,8 @@
 
 Fully anonymous temporary (by default) file upload and sharing website. Written in Go.
 
+![Visual demonstration of the web interface](.github/demo.gif)
+
 ### Compilation
 
 ```
