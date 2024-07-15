@@ -98,5 +98,7 @@ func (c *AppContext) getFile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	savedPath := fmt.Sprintf("%s/%s", *c.StoragePath, record.Id)
+
+	w.Header().Set("Content-Type", record.ContentType)
 	http.ServeFile(w, r, savedPath)
 }
