@@ -1,4 +1,6 @@
-## Caixinha - Temporary file storage
+## Caixinha - File storage
+
+Fully anonymous temporary (by default) file upload and sharing website. Written in Go.
 
 ### Compilation
 
@@ -9,6 +11,14 @@ go build .
 ```
 
 ### Usage and configuration
+
+#### Running
+
+By default the service is served at :8080.
+```
+./caixinha
+```
+After starting visit localhost:8080 on a web browser for a simple web-based UI.
 
 #### Flags
 - --bind
@@ -21,10 +31,3 @@ go build .
   - How many days should files be kept saved, a ttl smaller than 0 means the files are never deleted, default 30
 - --max-size
   - Max file size in megabytes, default 100
-
-#### Running
-
-By default the service is served at :8080, after starting visit localhost:8080 to view a simple web-based UI
-```
-./caixinha
-```
