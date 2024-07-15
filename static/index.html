@@ -86,10 +86,16 @@
 			padding-bottom: 10px;
 			border: lightblue dotted 3px;
 			background-color: rgb(210, 234, 242);
+			transition: 0.2s background-color;
+			word-break: break-all;
 		}
 
 		label:hover {
 			background-color: rgb(203, 237, 249);
+		}
+
+		label.ondrag {
+			background-color: rgb(176, 227, 245);
 		}
 
 		#error {
@@ -141,11 +147,17 @@
 			max-width: 600px;
 			margin: auto;
 			margin-top: 15px;
+			transition: 0.3s opacity;
 		}
 
 		#filename {
 			max-width: 50%;
 			text-overflow: ellipsis;
+		}
+
+		.response-hidden {
+			opacity: 0;
+			user-select: none;
 		}
 	</style>
 </head>
@@ -174,9 +186,9 @@
 			</button>
 		</form>
 		<p id="error" class="hidden"></p>
-		<div id="response">
-			<span id="filename"></span> <br/>
-			<a id="result-url" href="" target="_blank"></a>
+		<div id="response" class="response-hidden">
+			<span id="filename">placeholder</span> <br />
+			<a id="result-url" href="" target="_blank">placeholder</a>
 		</div>
 	</main>
 	<script>
@@ -187,6 +199,27 @@
 			const input = document.getElementById('file-input')
 			const label = document.getElementById('input-label')
 			const noFilesText = label.textContent
+
+			const onDragLeave = (e) => {
+				console.log('onDragOverOrLeave')
+				e.preventDefault()
+				label.classList.remove('ondrag')
+			}
+
+			label.ondragover = (e) => e.preventDefault()
+			label.ondragleave = onDragLeave
+
+			label.ondragenter = (e) => {
+				e.preventDefault()
+				label.classList.add('ondrag')
+			}
+
+			label.ondrop = (e) => {
+				e.preventDefault()
+				input.files = e.dataTransfer.files;
+				checkFiles()
+				onDragLeave(e)
+			}
 
 			const checkFiles = () => {
 				if (input.files.length > 0) {
@@ -205,11 +238,11 @@
 			btn.onclick = (e) => {
 				e.preventDefault()
 				if (input.files.length == 0) return
-				
+
 				const formData = new FormData()
 				const file = input.files[0]
 				formData.append('file', file)
-				
+
 				btn.disabled = true
 				fetch('/upload', {
 					method: 'post',
@@ -224,6 +257,8 @@
 					url.href = body
 					input.value = ''
 					checkFiles()
+
+					document.getElementById('response').classList.remove('response-hidden')
 				}).catch((error) => {
 					const errorMessage = document.getElementById('error')
 					const errorStatus = parseInt(error.message)
